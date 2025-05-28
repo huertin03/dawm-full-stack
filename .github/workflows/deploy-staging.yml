@@ -33,6 +33,7 @@ jobs:
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
       BACKEND_CORS_ORIGINS: ${{ secrets.BACKEND_CORS_ORIGINS }}
       POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
+      PROJECT_NAME: "DAWM Full Stack Project"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
