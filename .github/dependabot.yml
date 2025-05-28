@@ -7,6 +7,7 @@ updates:
       interval: daily
     commit-message:
       prefix: ⬆
+    open-pull-requests-limit: 0
   # Python uv
   - package-ecosystem: uv
     directory: /backend
@@ -14,6 +15,7 @@ updates:
       interval: daily
     commit-message:
       prefix: ⬆
+    open-pull-requests-limit: 0
   # npm
   - package-ecosystem: npm
     directory: /frontend
@@ -21,6 +23,7 @@ updates:
       interval: daily
     commit-message:
       prefix: ⬆
+    open-pull-requests-limit: 0
   # Docker
   - package-ecosystem: docker
     directories:
@@ -30,6 +33,7 @@ updates:
       interval: weekly
     commit-message:
       prefix: ⬆
+    open-pull-requests-limit: 0
   # Docker Compose
   - package-ecosystem: docker-compose
     directory: /
@@ -37,3 +41,4 @@ updates:
       interval: weekly
     commit-message:
       prefix: ⬆
+    open-pull-requests-limit: 0
