@@ -29,6 +29,7 @@ jobs:
       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
       DOCKER_IMAGE_FRONTEND: ${{secrets.DOCKER_IMAGE_FRONTEND }}
       DOCKER_IMAGE_BACKEND: ${{ secrets.DOCKER_IMAGE_BACKEND }}
+      FRONTEND_HOST: ${{ secrets.FRONTEND_HOST }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
