@@ -11,11 +11,11 @@ jobs:
     if: github.repository_owner != 'fastapi'
     runs-on:
       - self-hosted
-      - staging
+    environment: production
     env:
-      ENVIRONMENT: staging
-      DOMAIN: ${{ secrets.DOMAIN_STAGING }}
-      STACK_NAME: ${{ secrets.STACK_NAME_STAGING }}
+      ENVIRONMENT: production
+      DOMAIN: ${{ secrets.DOMAIN_PRODUCTION }}
+      STACK_NAME: ${{ secrets.STACK_NAME_PRODUCTION }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FIRST_SUPERUSER: ${{ secrets.FIRST_SUPERUSER }}
       FIRST_SUPERUSER_PASSWORD: ${{ secrets.FIRST_SUPERUSER_PASSWORD }}
@@ -25,8 +25,19 @@ jobs:
       EMAILS_FROM_EMAIL: ${{ secrets.EMAILS_FROM_EMAIL }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+
+      POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+      DOCKER_IMAGE_FRONTEND: ${{secrets.DOCKER_IMAGE_FRONTEND }}
+      DOCKER_IMAGE_BACKEND: ${{ secrets.DOCKER_IMAGE_BACKEND }}
+      FRONTEND_HOST: ${{ secrets.FRONTEND_HOST }}
+      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: docker compose -f docker-compose.yml --project-name ${{ secrets.STACK_NAME_STAGING }} build
-      - run: docker compose -f docker-compose.yml --project-name ${{ secrets.STACK_NAME_STAGING }} up -d
+      - run: |
+          STACK_NAME=$(echo "${{ secrets.STACK_NAME_PRODUCTION }}" | tr -d '\n')
+          docker compose -f docker-compose.yml --project-name "$STACK_NAME" build
+      - run: |
+          STACK_NAME=$(echo "${{ secrets.STACK_NAME_PRODUCTION }}" | tr -d '\n')
+          docker compose -f docker-compose.yml --project-name "$STACK_NAME" up -d
+
