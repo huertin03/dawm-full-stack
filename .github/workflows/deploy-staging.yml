@@ -28,5 +28,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: "docker compose -f docker-compose.yml --project-name \"${{ secrets.STACK_NAME_PRODUCTION }}\" build"
-      - run: "docker compose -f docker-compose.yml --project-name \"${{ secrets.STACK_NAME_PRODUCTION }}\" up -d"
+      - run: |
+          STACK_NAME=$(echo "${{ secrets.STACK_NAME_PRODUCTION }}" | tr -d '\n')
+          docker compose -f docker-compose.yml --project-name "$STACK_NAME" build
+      - run: |
+          STACK_NAME=$(echo "${{ secrets.STACK_NAME_PRODUCTION }}" | tr -d '\n')
+          docker compose -f docker-compose.yml --project-name "$STACK_NAME" up -d
