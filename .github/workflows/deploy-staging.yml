@@ -31,6 +31,8 @@ jobs:
       DOCKER_IMAGE_BACKEND: ${{ secrets.DOCKER_IMAGE_BACKEND }}
       FRONTEND_HOST: ${{ secrets.FRONTEND_HOST }}
       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      BACKEND_CORS_ORIGINS: ${{ secrets.BACKEND_CORS_ORIGINS }}
+      POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
